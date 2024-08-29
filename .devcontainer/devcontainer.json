@@ -1,0 +1,22 @@
+{
+    "name": "DevContainer for WAII Hands On Lab",
+    "image": "mcr.microsoft.com/devcontainers/python:3.12-bookworm",
+    "features": {
+        "ghcr.io/devcontainers/features/github-cli:1": {},
+        "ghcr.io/va-h/devcontainers-features/uv:1": {}
+    },
+    "postStartCommand": {
+        "update-deps": "uv venv waii --allow-existing && uv init --no-package --no-readme || true ; uv pip sync requirements.txt"
+    },
+    "customizations": {
+        "vscode": {
+            "settings": {
+                "files.eol": "\n"
+            }
+        }
+    },
+    "mounts": [
+        "source=${env:HOME}${env:USERPROFILE}/.ssh,target=/home/vscode/.ssh,type=bind"
+    ],
+    "containerUser": "vscode"
+}
